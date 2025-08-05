@@ -129,61 +129,68 @@ def f_A_downG(x,F_A_down,sigma,centers):
 # Function to plot all Gaussian fuzzy sets
 def plot_gaussian_fuzzy_sets(centers, sigma):
     x_values = np.linspace(-2.5, 2.5, 500)
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(10, 6))
 
-    for c in centers:
+    for i, c in enumerate(centers, start=1):
         fuzzy_values = gaussian_fuzzy_set(x_values, sigma, c)
-        plt.plot(x_values, fuzzy_values, linewidth=2)#, label=f'$g(x; \\sigma={sigma}, c={c:.2f})$')
+        plt.plot(x_values, fuzzy_values, linewidth=2, label=f'$A_{{{i}}}$')
 
-    #plt.title('Gaussian Fuzzy Sets')
-    plt.xlabel('$x$')
-    plt.ylabel('y')
+    plt.xlabel('$x$', fontsize=16)
+    plt.ylabel('Membership Degrees', fontsize=16)
     plt.axhline(0, color='black', linewidth=0.5, ls='--')
     plt.axvline(0, color='black', linewidth=0.5, ls='--')
     plt.grid()
-    plt.legend()
+    plt.legend(fontsize=16)
     plt.xlim(-2.5, 2.5)
     plt.ylim(-0.1, 1.1)
+    plt.tight_layout()
     plt.savefig("Gauss.pdf", format='pdf')
     plt.show()
+
 ##############################################
 # Function to plot all fuzzy sets
 def plot_triangular_fuzzy_sets(params):
     x_values = np.linspace(-2.5, 2.5, 500)
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(10, 6))
 
-    for a, b, c in params:
+    for i, (a, b, c) in enumerate(params, start=1):
         fuzzy_values = np.array([triangular_fuzzy_number(a, b, c, x) for x in x_values])
-        plt.plot(x_values, fuzzy_values, linewidth=2)#, label=f'$A(x)$ with a={a:.2f}, b={b:.2f}, c={c:.2f}')
+        plt.plot(x_values, fuzzy_values, linewidth=2, label=f'$A_{{{i}}}$')
 
-    #plt.title('Triangular Fuzzy Sets')
-    plt.xlabel('$x$')
-    plt.ylabel('Membership Degree')
+    # Optional title
+    # plt.title('Triangular Fuzzy Sets')
+
+    plt.xlabel('$x$', fontsize=16)
+    plt.ylabel('Membership Degrees', fontsize=16)
     plt.axhline(0, color='black', linewidth=0.5, ls='--')
     plt.axvline(0, color='black', linewidth=0.5, ls='--')
     plt.grid()
-    plt.legend()
+    plt.legend(fontsize=16)
     plt.xlim(-2.5, 2.5)
     plt.ylim(-0.1, 1.1)
-    plt.savefig("Trian.pdf",format='pdf')
+    plt.tight_layout()
+    plt.savefig("Trian.pdf", format='pdf')
     plt.show()
 ##################################
 # Function to plot all Gaussian fuzzy sets
-def plot_bell_fuzzy_sets(x_values,centers, a,b):
-    plt.figure(figsize=(12, 8))
+def plot_bell_fuzzy_sets(x_values, centers, a, b):
+    plt.figure(figsize=(10, 6))
 
-    for c in centers:
-        fuzzy_values = bell_function(x_values, a,b, c)
-        plt.plot(x_values, fuzzy_values, linewidth=2)#, label=f'$g(x; \\sigma={sigma}, c={c:.2f})$')
+    for i, c in enumerate(centers, start=1):  # start=1 for A_1, A_2, ...
+        fuzzy_values = bell_function(x_values, a, b, c)
+        plt.plot(x_values, fuzzy_values, linewidth=2, label=f'$A_{{{i}}}$')
 
-    #plt.title('Bell Fuzzy Sets')
-    plt.xlabel('$x$')
-    plt.ylabel('$y$')
+    # Optional title
+    # plt.title('Bell Fuzzy Sets')
+
+    plt.xlabel('$x$', fontsize=16)
+    plt.ylabel('Membership Degrees', fontsize=16)
     plt.axhline(0, color='black', linewidth=0.5, ls='--')
     plt.axvline(0, color='black', linewidth=0.5, ls='--')
     plt.grid()
-    plt.legend()
+    plt.legend(fontsize=16)
     plt.xlim(-2.5, 2.5)
     plt.ylim(-0.1, 1.1)
-    plt.savefig("Bell.pdf",format='pdf')
+    plt.tight_layout()
+    plt.savefig("Bell.pdf", format='pdf')
     plt.show()

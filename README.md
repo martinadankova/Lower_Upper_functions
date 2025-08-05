@@ -1,5 +1,5 @@
 # Lower_Upper_functions
-Lower and upper functions as approximations for positive non-zero valued functions. It demonstrates a method from [1], i.e., a use of Lower and Upper (LU) bounding functions with specific components. In Github repository ZahraAlijani/UpperLowerApp LU functions are used for approximating solutions to differential equations under uncertainty. A generalization to higher-dimensional case is in progress.
+Lower and Upper (LU) functions as approximations for positive non-zero valued functions--a method from [1]. Here we demonstrate a use of LU bounding functions with specific components. In Github repository ZahraAlijani/UpperLowerApp LU functions are used for approximating solutions to differential equations under uncertainty. A generalization to higher-dimensional case is in progress.
 
 It contains Ipython notebook: 
 `lower_upper_functions_experiments.ipynb`

@@ -26,6 +26,31 @@ def F_A_upT(params, x_values, f_values):
         F_A_up.append(np.max(products))
     return F_A_up
 
+def F_A_upT_multi(params, x_values, f_values, combine_dim='min'):
+    # params: shape (3, m)
+    a = params[0][:, None]   # shape (m,1)
+    b = params[1][:, None]
+    c = params[2][:, None]
+
+    # x_values: shape (m, n)
+    mu = triangular_fuzzy_number(a, b, c, x_values)   # shape (m, n)
+
+    # combine across dimensions
+    if combine_dim == 'min':
+        mu_combined = np.min(mu, axis=0)            # -> (n,)
+    elif combine_dim == 'prod':
+        mu_combined = np.prod(mu, axis=0)
+    else:
+        raise ValueError("Unknown combine_dim")
+
+    products = mu_combined * f_values               # (n,)
+    return np.max(products)
+
+def F_A_upT_multi_dim(params_list, x_values, f_values):
+    results = []
+    for params in params_list:      # každý params je 3×m
+        results.append(F_A_upT_multi(params, x_values, f_values))
+    return results
 
 def F_A_downT(params, x_values, f_x_values):
     F_A_down = []
